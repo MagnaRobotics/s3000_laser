@@ -2,10 +2,14 @@
 
 <launch>
   <arg name="port" default="/dev/ttyUSB0" />
+  <arg name="frame_id" default="/laser_base" />
+  <arg name="node_name" default="s3000_laser_node"/>
+  <arg name="topic_name" default="/scan"/>
 
-  <node pkg="s3000_laser" type="s3000_laser_node" name="s3000_laser_node" output="screen">
+  <node pkg="s3000_laser" type="s3000_laser_node" name="$(arg node_name)" output="screen">
   	<param name="port" value="$(arg port)" type="string"/>
-    <param name="frame_id" value="/laser_base" type="string"/>
+    <param name="frame_id" value="$(arg frame_id)" type="string"/>
+    <param name="topic_name" value="$(arg topic_name)" type="string"/>
     <!--param name="range_min" value="0" type="double"/>
     <param name="range_max" value="40" type="double"/-->
   </node>

@@ -38,3 +38,19 @@ s3000_laser/scan (sensor_msgs/LaserScan)
 
 ~range_max (float, default: 40m)
     Max valid range (m) for S3000 data. 
+
+**Configuration for Magna Project**
+Using serial to USB hubs with __continuous__ data output configured from 2x SICK S3000 lasers,
+check and configure ports for each laser using
+
+1. `ls -l /dev/ | grep USB` - should output `ttyUSBn` where `n` is port number
+2. `sudo chmod o+rw /dev/ttyUSBn` : `n` is port number
+3. `echo -ne '\033[2J' > /dev/ttyUSBn`
+4. `echo -ne '\033[2J' > /dev/ttyUSBn` - this should echo data on the terminal. If you see some output, the port works.
+5. Example command for laser scanner on right [node_name doesn't matter, but needs to be specified to avoid node naming conflict]
+
+`roslaunch s3000_laser s3000_laser.launch port:=/dev/ttyUSB2 frame_id:=/s3000_link_right node_name:=s3000_right topic_name:=/scan_right`
+
+**roslaunch for each laser scanner attached**
+
+Now you should be able to visualize `LaserScan` topics in RViz when using the respective Magna launchfile from its respective package.
