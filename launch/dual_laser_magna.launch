@@ -6,13 +6,13 @@
   <arg name="port_right" default="/dev/ttyUSB1"/> 
   <include file="$(find s3000_laser)/launch/s3000_laser.launch">
     <arg name="port" value="$(arg port_right)"/>
-    <arg name="frame_id" value="/s3000_link_right"/>
+    <arg name="frame_id" value="/s3000_optical_link_right"/>
     <arg name="node_name" value="s3000_right"/>
     <arg name="topic_name" value="/scan_right"/>
   </include>
   <include file="$(find s3000_laser)/launch/s3000_laser.launch">
     <arg name="port" value="$(arg port_left)"/>
-    <arg name="frame_id" value="/s3000_link_left"/>
+    <arg name="frame_id" value="/s3000_optical_link_left"/>
     <arg name="node_name" value="s3000_left"/>
     <arg name="topic_name" value="/scan_left"/>
   </include>
